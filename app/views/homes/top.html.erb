@@ -1,0 +1,7 @@
+<h1 id="top-title">Anomeet</h1>
+<%= link_to "今すぐ始める", new_user_registration_path, id: "sign-up-btn"%>
+既に登録している人は<%= link_to "ログイン", new_user_session_path, id: "sign-in-btn" %>
+
+<% if user_signed_in? %>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% end %>
