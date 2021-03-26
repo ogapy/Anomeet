@@ -1,11 +1,11 @@
 <h1>MeetingRooms#index</h1>
-<p>Find me in app/views/meeting_rooms/index.html.erb</p>
 
 <% @attending_meeting_rooms.each do |attending_meeting_room| %>
   <div>
     <%= attending_meeting_room.name %>
     <%= attending_meeting_room.leader_id %>
     <%= attending_meeting_room.meeting_id %>
+    <%= link_to "参加する", meeting_room_path(attending_meeting_room) %>
   </div>
 <% end %>
 

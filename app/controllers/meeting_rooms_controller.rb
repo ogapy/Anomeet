@@ -10,6 +10,8 @@ class MeetingRoomsController < ApplicationController
   end
 
   def show
+    @meeting_room = MeetingRoom.find(params[:id])
+    @member = @meeting_room.
   end
 
   def create
