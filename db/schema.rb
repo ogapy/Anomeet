@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_161502) do
 
   create_table "chats", force: :cascade do |t|
     t.text "content"
-    t.boolean "is_disclosed"
+    t.boolean "is_disclosed", default: false
     t.bigint "meeting_room_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
