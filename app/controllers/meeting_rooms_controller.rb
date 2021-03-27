@@ -3,15 +3,12 @@ class MeetingRoomsController < ApplicationController
 
   def index
     @new_meeting_room        = MeetingRoom.new
-    @attending_meeting_rooms = current_user.room_users
-                              .map{ |room_user|
-                                room_user.meeting_room
-                              }
+    @attending_rooms = current_user.attending_rooms
   end
 
   def show
     @meeting_room = MeetingRoom.find(params[:id])
-    @member = @meeting_room.
+    @members = @meeting_room.members
   end
 
   def create
@@ -31,9 +28,7 @@ class MeetingRoomsController < ApplicationController
         redirect_to @new_meeting_room
       end
     else
-      @attending_meeting_rooms = current_user.meeting_users.map{ |meeting_user|
-        meeting_user.meeting_room
-      }
+      @attending_rooms = current_user.attending_rooms
       flash[:error] = "Something went wrong"
       render 'index'
     end

@@ -1,11 +1,11 @@
 <h1>MeetingRooms#index</h1>
 
-<% @attending_meeting_rooms.each do |attending_meeting_room| %>
+<% @attending_rooms.each do |attending_room| %>
   <div>
-    <%= attending_meeting_room.name %>
-    <%= attending_meeting_room.leader_id %>
-    <%= attending_meeting_room.meeting_id %>
-    <%= link_to "参加する", meeting_room_path(attending_meeting_room) %>
+    <%= attending_room.name %>
+    <%= attending_room.leader_id %>
+    <%= attending_room.meeting_id %>
+    <%= link_to "参加する", meeting_room_path(attending_room) %>
   </div>
 <% end %>
 
