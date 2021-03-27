@@ -1,0 +1,17 @@
+<h1>MeetingRooms#index</h1>
+
+<% @attending_rooms.each do |attending_room| %>
+  <div>
+    <%= attending_room.name %>
+    <%= attending_room.leader_id %>
+    <%= attending_room.meeting_id %>
+    <%= link_to "参加する", meeting_room_path(attending_room) %>
+  </div>
+<% end %>
+
+<%= form_with model: @new_meeting_room, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit "ルーム作成"%>
+<% end %>
