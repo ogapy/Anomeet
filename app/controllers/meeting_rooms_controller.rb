@@ -9,6 +9,8 @@ class MeetingRoomsController < ApplicationController
   def show
     @meeting_room = MeetingRoom.find(params[:id])
     @members = @meeting_room.members
+    @new_chat = Chat.new
+    session[:meeting_room_id] = @meeting_room.id
   end
 
   def create
