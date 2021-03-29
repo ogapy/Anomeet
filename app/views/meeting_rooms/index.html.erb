@@ -1,5 +1,10 @@
 <h1>MeetingRooms#index</h1>
 
+<%= form_with url: search_path, local: true do |f| %>
+  <%= f.text_field :meeting_id %>
+  <%= f.submit "ミーティングルームを検索" %>
+<% end %>
+
 <% @attending_rooms.each do |attending_room| %>
   <div>
     <%= attending_room.name %>
