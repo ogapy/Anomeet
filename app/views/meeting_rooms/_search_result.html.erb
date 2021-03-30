@@ -1,0 +1,10 @@
+<div id="search_result_modal">
+  <p><%= search_result %>に参加しますか</p>
+  <%= link_to "参加する", enter_room_path(meeting_room_id: search_result.id), method: :post %>
+  <button>やめる</button>
+</div>
+
+<%# 今、部屋を検索した後にモーダルで確認を出そうとしている
+検索のformはremote: trueにして非同期で出そうとしている
+非同期のためのjsファイルと部分テンプレートは記述した
+あとはsearch_room、enter_roomアクションの記述 %>

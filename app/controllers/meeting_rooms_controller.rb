@@ -38,25 +38,32 @@ class MeetingRoomsController < ApplicationController
 
   def search_room
     @search_room = MeetingRoom.find_by(meeting_id: params[:meeting_id])
-    is_attend = current_user.attending_rooms.find_by(meeting_id: params[:meeting_id]).present?
+    @attending_searched_room = current_user.attending_rooms.where(meeting_id: params[:meeting_id])
     if @search_room.present?
-      if is_attend
-        redirect_to @search_room
+      if @attending_searched_room.present?
+        # 存在かつ参加済
+        @new_meeting_room = MeetingRoom.new
+        @attending_rooms = @attending_searched_room
+        render :index
       else
-        @new_room_user = RoomUser.new(
-          user_id: current_user.id,
-          meeting_room_id: @search_room.id
-        )
-        @new_room_user.save
-        redirect_to @search_room
+        # 存在かつ未参加
+        @search_result = @search_room
       end
     else
-      @new_meeting_room = MeetingRoom.new
-      @attending_rooms  = current_user.attending_rooms
-      render :index
+      # 存在しない
+      @search_result = @search_room
     end
   end
-  
+
+  def enter_room
+    @new_room_user = RoomUser.new(
+      user_id: current_user.id,
+      meeting_room_id: params[:meeting_room_id]
+    )
+    @new_room_user.save
+    redirect_to meeting_room_path(params[:meeting_room_id])
+  end
+
   private
 
   def meeting_room_params
