@@ -1,5 +1,10 @@
 <h1>MeetingRooms#index</h1>
 
+<%= form_with url: search_path, remote: true do |f| %>
+  <%= f.text_field :meeting_id, id: "search-room-form" %>
+  <%= f.submit "ミーティングルームを検索" %>
+<% end %>
+
 <% @attending_rooms.each do |attending_room| %>
   <div>
     <%= attending_room.name %>
@@ -15,3 +20,5 @@
 
   <%= f.submit "ルーム作成"%>
 <% end %>
+
+<div id="search-result"></div>
