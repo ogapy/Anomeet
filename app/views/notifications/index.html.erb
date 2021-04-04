@@ -1,0 +1,7 @@
+<%= @notifications.each do |notification| %>
+  <div>
+    <p><%= notification.sender.name %></p>
+    <p><%= notification.chat.content %></p>
+    <p><%= link_to "名前を開示する", chat_path(notification.chat), method: :patch %></p>
+  </div>
+<% end %>

@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+// 通知のベルマーク上の丸
+.n-circle {
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #efa04c;
+}

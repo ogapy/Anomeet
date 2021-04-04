@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_161502) do
+ActiveRecord::Schema.define(version: 2021_03_31_131011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 2021_03_24_161502) do
     t.string "meeting_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "sender_id", null: false
+    t.integer "receiver_id", null: false
+    t.bigint "chat_id", null: false
+    t.integer "action", null: false
+    t.boolean "is_checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chat_id"], name: "index_notifications_on_chat_id"
+    t.index ["receiver_id"], name: "index_notifications_on_receiver_id"
+    t.index ["sender_id"], name: "index_notifications_on_sender_id"
   end
 
   create_table "room_users", force: :cascade do |t|
@@ -58,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_161502) do
 
   add_foreign_key "chats", "meeting_rooms"
   add_foreign_key "chats", "users"
+  add_foreign_key "notifications", "chats"
   add_foreign_key "room_users", "meeting_rooms"
   add_foreign_key "room_users", "users"
 end
