@@ -13,7 +13,9 @@ class User < ApplicationRecord
   # リーダーとなっている部屋を取得
   has_many :leader_rooms, class_name: "MeetingRoom", foreign_key: "leader_id"
 
-  #
+  # 自分が飛ばした通知
   has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id", dependent: :destroy
+
+  # 自分に飛んできた通知
   has_many :passive_notifications, class_name: "Notification", foreign_key: "receiver_id", dependent: :destroy
 end

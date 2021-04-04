@@ -14,7 +14,11 @@
       <% if chat.is_disclosed %>
         <%= chat.user.name %>
       <% end %>
-      <%= form_with model: chat, local: true do |f| %>
+      <%= form_with url: apply_path, local: true do |f| %>
+        <%# 通知の対象になるchat_id %>
+        <%= f.hidden_field :chat_id, value: chat.id %>
+        <%# 同じ部屋に戻るためのroom_id %>
+        <%= f.hidden_field :room_id, value: @meeting_room.id %>
         <%= f.submit "名前を見る" %>
       <% end %>
     </div>
