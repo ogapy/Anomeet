@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :chats, dependent: :destroy
+  has_many :favorites
 
   # ユーザ情報から参加している部屋の情報を取得
   has_many :room_users, dependent: :destroy
@@ -18,4 +19,9 @@ class User < ApplicationRecord
 
   # 自分に飛んできた通知
   has_many :passive_notifications, class_name: "Notification", foreign_key: "receiver_id", dependent: :destroy
+
+  def already_favorited?(chat)
+    favorites.where(chat: chat).exists?
+  end
+  
 end
