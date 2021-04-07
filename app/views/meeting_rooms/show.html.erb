@@ -11,6 +11,9 @@
   <% else %>
     <div>
       <%= chat.content %>
+      <div id="chat-<%= chat.id %>">
+        <%= render 'chats/favorite', chat: chat %>
+      </div>
       <% if chat.is_disclosed %>
         <%= chat.user.name %>
       <% else %>

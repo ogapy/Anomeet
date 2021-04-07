@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_131011) do
+ActiveRecord::Schema.define(version: 2021_04_06_125828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2021_03_31_131011) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["meeting_room_id"], name: "index_chats_on_meeting_room_id"
     t.index ["user_id"], name: "index_chats_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chat_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chat_id"], name: "index_favorites_on_chat_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "meeting_rooms", force: :cascade do |t|
@@ -71,6 +80,8 @@ ActiveRecord::Schema.define(version: 2021_03_31_131011) do
 
   add_foreign_key "chats", "meeting_rooms"
   add_foreign_key "chats", "users"
+  add_foreign_key "favorites", "chats"
+  add_foreign_key "favorites", "users"
   add_foreign_key "notifications", "chats"
   add_foreign_key "room_users", "meeting_rooms"
   add_foreign_key "room_users", "users"
