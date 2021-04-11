@@ -1,4 +1,10 @@
-<h1>MeetingRooms#index</h1>
+<%= link_to notifications_path do %>
+  <span class="fa-stack">
+    <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
+    <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
+  </span>
+  通知
+<% end %>
 
 <%= form_with url: search_path, remote: true do |f| %>
   <%= f.text_field :meeting_id, id: "search-room-form" %>

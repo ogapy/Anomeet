@@ -1,7 +1,16 @@
-<h1 id="top-title">Anomeet</h1>
-<%= link_to "今すぐ始める", new_user_registration_path, id: "sign-up-btn"%>
-既に登録している人は<%= link_to "ログイン", new_user_session_path, id: "sign-in-btn" %>
+<div class="background">
+  <div class="main-title">
+    <div class="main-title-top">
+      <h1 class="top-title text-center">Anomeet</h1>
+      <p class="top-sub-title text-center">匿名で意見を出せる会議アプリ</p>
+    </div>
+    <div class="main-title-bottom">
+      <%= link_to "今すぐ始める", new_user_registration_path, class: "sign-up-btn auth-btn text-center"%>
+      <%= link_to "ログイン", new_user_session_path, class: "sign-in-btn auth-btn text-center" %>
+    </div>
+  </div>
+</div>
 
-<% if user_signed_in? %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% end %>
+<%# <% if user_signed_in? %>
+<%# <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<%# end %>

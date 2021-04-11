@@ -1,0 +1,28 @@
+@import "color";
+
+.sign-up-title {
+  color: $main-color;
+  font-size: 50px;
+  padding-top: 80px;
+  margin-bottom: 100px;
+}
+
+.form {
+  padding: 10px 15px;
+  border: 2px solid $sub-color;
+  margin: 0 auto 25px auto;
+  border-radius: 5px;
+  width: 60%;
+  display: block;
+}
+
+.sign-up {
+  background-color: $main-color;
+  font-size: 25px;
+  color: white;
+  padding: 10px 70px;
+  margin: 70px auto 0 auto;
+  display: block;
+  border-radius: 40px;
+  border: none;
+}

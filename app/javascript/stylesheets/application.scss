@@ -1,1 +1,33 @@
-@import "~@fontawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "top";
+@import "signup";
+@import "color";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.text-center {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.background {
+  background-color: $main-color;
+  width: 100%;
+  height: 100vh;
+}
+
+.auth-background {
+  background-color: white;
+  width: 50%;
+  height: 100vh;
+  margin: 0 auto;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
+}

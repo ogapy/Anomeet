@@ -7,18 +7,12 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%# <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> %>
+    
   </head>
 
   <body>
     <header>
-      <%= link_to notifications_path do %>
-        <span class="fa-stack">
-          <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
-          <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
-        </span>
-        通知
-      <% end %>
+      
     </header>
     <%= yield %>
   </body>
