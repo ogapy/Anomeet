@@ -1,6 +1,6 @@
 <div class="background">
   <div class="auth-background">
-    <h2 class="sign-up-title text-center">Anomeetに登録</h2>
+    <h2 class="auth-title text-center">Anomeetに登録</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -22,7 +22,7 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "登録", class: "sign-up" %>
+        <%= f.submit "登録", class: "authenticate-btn" %>
       </div>
     <% end %>
   </div>

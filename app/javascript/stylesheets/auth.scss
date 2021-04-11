@@ -1,6 +1,14 @@
 @import "color";
 
-.sign-up-title {
+.auth-background {
+  background-color: white;
+  width: 50%;
+  height: 100vh;
+  margin: 0 auto;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
+}
+
+.auth-title {
   color: $main-color;
   font-size: 50px;
   padding-top: 80px;
@@ -16,7 +24,7 @@
   display: block;
 }
 
-.sign-up {
+.authenticate-btn {
   background-color: $main-color;
   font-size: 25px;
   color: white;
