@@ -2,7 +2,7 @@
 @import "top";
 @import "auth";
 @import "color";
-
+@import "meeting_rooms";
 * {
   margin: 0;
   padding: 0;
@@ -22,4 +22,55 @@ a {
   background-color: $main-color;
   width: 100%;
   height: 100vh;
+}
+
+// header関係
+
+header {
+  width: 100%;
+  height: 80px;
+  background-color: $sub-color;
+  display: flex;
+  justify-content: space-between;
+}
+
+.room_search {
+  line-height: 80px;
+  position: relative;
+}
+
+#search-room-form {
+  width: 1050px;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  background-color: $sub-color2;
+}
+
+#search-room-form::placeholder {
+  color: rgba($color: white, $alpha: 0.7);
+  font-size: 18px;
+  text-align: center;
+}
+
+.fa-search {
+  position: absolute;
+  top: 34px;
+  left: 9px;
+  color: rgba($color: white, $alpha: 0.7);
+  font-size: 18px;
+}
+
+.fa-bell {
+  margin-top: 28px;
+  line-height: 80px;
+  color: white;
+  font-size: 0.8em;
+}
+
+.sign-out {
+  color: white;
+  line-height: 80px;
+  margin-right: 20px;
+  font-size: 20px;
 }

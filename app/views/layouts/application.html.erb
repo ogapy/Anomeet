@@ -11,9 +11,28 @@
   </head>
 
   <body>
-    <header>
-      
-    </header>
+    <% if controller.controller_name != "homes" || user_signed_in? %>
+      <header>
+        <%= link_to "Anomeet", meeting_rooms_path , class: "logo" %>
+
+        <%= form_with url: search_path, remote: true, class: "room_search" do |f| %>
+          <i class="fas fa-search"></i>
+          <%= f.text_field :meeting_id, id: "search-room-form", placeholder: "Enter room ID" %>
+          <%#<%= f.submit "ミーティングルームを検索" %>
+        <% end %>
+
+        <%= link_to notifications_path do %>
+          <span class="fa-stack">
+            <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
+            <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
+          </span>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sign-out" %>
+        <% end %>
+      </header>
+    <% end %>
     <%= yield %>
   </body>
 </html>

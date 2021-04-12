@@ -1,30 +1,21 @@
-<%= link_to notifications_path do %>
-  <span class="fa-stack">
-    <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
-    <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
-  </span>
-  通知
-<% end %>
+<div class="background">
+  
 
-<%= form_with url: search_path, remote: true do |f| %>
-  <%= f.text_field :meeting_id, id: "search-room-form" %>
-  <%= f.submit "ミーティングルームを検索" %>
-<% end %>
+  <% @attending_rooms.each do |attending_room| %>
+    <div>
+      <%= attending_room.name %>
+      <%= attending_room.leader_id %>
+      <%= attending_room.meeting_id %>
+      <%= link_to "参加する", meeting_room_path(attending_room) %>
+    </div>
+  <% end %>
 
-<% @attending_rooms.each do |attending_room| %>
-  <div>
-    <%= attending_room.name %>
-    <%= attending_room.leader_id %>
-    <%= attending_room.meeting_id %>
-    <%= link_to "参加する", meeting_room_path(attending_room) %>
-  </div>
-<% end %>
+  <%= form_with model: @new_meeting_room, local: true do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
-<%= form_with model: @new_meeting_room, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+    <%= f.submit "ルーム作成"%>
+  <% end %>
 
-  <%= f.submit "ルーム作成"%>
-<% end %>
-
-<div id="search-result"></div>
+  <div id="search-result"></div>
+</div>
