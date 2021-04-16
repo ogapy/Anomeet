@@ -1,21 +1,40 @@
 <div class="background">
   
+  <div class="meeting-rooms">
+    <% @attending_rooms.each do |attending_room| %>
+      <div class="meeting-room-block">
+        <p class="meeting-room-name"><%= attending_room.name %></p>
+        <p class="participant">参加者</p>
+        <p class="meeting-room-member">ogapy</p>
+        <p class="meeting-room-member">ogapy</p>
+        <p class="meeting-room-member">ogapy</p>
+        <p class="meeting-room-member"><i class="fas fa-ellipsis-v"></i></p>
+        <%#= attending_room.leader_id %>
+        <%#= attending_room.meeting_id %>
+        <%= link_to "参加する", meeting_room_path(attending_room), class: "meeting-room-btn text-center" %>
+      </div>
+    <% end %>
+  </div>
 
-  <% @attending_rooms.each do |attending_room| %>
-    <div>
-      <%= attending_room.name %>
-      <%= attending_room.leader_id %>
-      <%= attending_room.meeting_id %>
-      <%= link_to "参加する", meeting_room_path(attending_room) %>
-    </div>
-  <% end %>
-
-  <%= form_with model: @new_meeting_room, local: true do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.submit "ルーム作成"%>
-  <% end %>
+  <div class="circle">
+    <i class="fas fa-plus"></i>
+  </div>
+  <div class="background-2">
+    <%= form_with model: @new_meeting_room, local: true, class: "new-room-form" do |f| %>
+      <p class="new-room-name">新規ルームを作成</p>
+      <%= f.text_field :name, class: "new-room-textfield" %>
+      <br>
+      <%= f.submit "ルーム作成", class: "new-room-submit" %>
+    <% end %>
+  </div>
 
   <div id="search-result"></div>
+
+  <div class="notifications">
+    <h2 class="notification-title">通知一覧</h2>
+    <hr class="hr-1">
+    <p class="notification-text">Usernameがあなたのコメントに いいね しました。</p>
+    <p class="notification-chat">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+    <hr class="hr-2">
+  </div>
 </div>

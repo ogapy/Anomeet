@@ -11,28 +11,39 @@
   </head>
 
   <body>
-    <% if controller.controller_name != "homes" || user_signed_in? %>
-      <header>
+  <header>
+    <nav class="nav">
+      <% if controller.controller_name == "meeting_rooms" && controller.action_name == "show" %>
+        <%= link_to meeting_rooms_path, class: "back-link" do %>
+          <i class="fas fa-chevron-left"></i>
+        <% end %>
+        <div class="room-info">
+          <h1 class="room-name"><%= @meeting_room.name %></h1><br>
+          <span class="meeting-id">
+            <%= @meeting_room.meeting_id %>
+          </span>
+        </div>
+      <% elsif controller.controller_name != "homes" || user_signed_in? %>
         <%= link_to "Anomeet", meeting_rooms_path , class: "logo" %>
-
         <%= form_with url: search_path, remote: true, class: "room_search" do |f| %>
           <i class="fas fa-search"></i>
           <%= f.text_field :meeting_id, id: "search-room-form", placeholder: "Enter room ID" %>
           <%#<%= f.submit "ミーティングルームを検索" %>
         <% end %>
+      <% end %>
+          <%= link_to notifications_path do %>
+            <span class="fa-stack">
+              <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
+              <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
+            </span>
+          <% end %>
 
-        <%= link_to notifications_path do %>
-          <span class="fa-stack">
-            <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
-            <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
-          </span>
-        <% end %>
-
-        <% if user_signed_in? %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sign-out" %>
-        <% end %>
-      </header>
-    <% end %>
+          <% if user_signed_in? %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sign-out text-center" %>
+          <% end %>
+    </nav>
+    
+  </header>
     <%= yield %>
   </body>
 </html>

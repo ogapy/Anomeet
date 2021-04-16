@@ -3,10 +3,16 @@
 @import "auth";
 @import "color";
 @import "meeting_rooms";
+@import "in_room";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
 }
 
 .text-center {
@@ -16,22 +22,37 @@
 a {
   text-decoration: none;
   display: inline-block;
+  // クリック時の青四角を消す
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
 
 .background {
   background-color: $main-color;
   width: 100%;
-  height: 100vh;
+  min-height: 91vh;
 }
 
 // header関係
 
 header {
   width: 100%;
-  height: 80px;
+  height: 9vh;
   background-color: $sub-color;
+}
+
+.nav {
   display: flex;
   justify-content: space-between;
+}
+
+.logo {
+  font-size: 30px;
+  color: white;
+  padding-left: 30px;
+  line-height: 80px;
+  font-weight: bold;
+  flex-grow: 1;
 }
 
 .room_search {
@@ -45,6 +66,7 @@ header {
   border-radius: 15px;
   border: none;
   background-color: $sub-color2;
+  flex-grow: 60;
 }
 
 #search-room-form::placeholder {
@@ -63,14 +85,58 @@ header {
 
 .fa-bell {
   margin-top: 28px;
+  margin-left: 10px;
   line-height: 80px;
   color: white;
   font-size: 0.8em;
+  flex-grow: 1;
 }
 
 .sign-out {
   color: white;
   line-height: 80px;
-  margin-right: 20px;
   font-size: 20px;
+  flex-grow: 2;
+}
+
+/// 部屋内のheader
+.back-link {
+  line-height: 80px;
+  flex-grow: 1;
+  padding-left: 30px;
+}
+
+.fa-chevron-left {
+  color: white;
+  font-size: 30px;
+}
+
+.room-info {
+  flex-grow: 60;
+  text-align: center;
+  padding-top: 10px;
+  color: white;
+  padding-left: 120px;
+  position: relative;
+}
+
+.room-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin-left: 120px;
+  font-size: 40px;
+}
+
+.meeting-id {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin-top: 50px;
+  margin-left: 120px;
+  text-align: center;
 }

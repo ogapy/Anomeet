@@ -1,10 +1,10 @@
 <% if current_user.already_favorited?(chat) %>
-  <%= link_to chat_favorites_path(chat), method: :delete, remote: true do %>
+  <%= link_to chat_favorites_path(chat), method: :delete, remote: true, class: "already-favorited" do %>
     <i class="fas fa-heart"></i>
     <%= chat.favorites.count %>
   <% end %>
 <% else %>
-  <%= link_to chat_favorites_path(chat), method: :post, remote: true do %>
+  <%= link_to chat_favorites_path(chat), method: :post, remote: true, class: "not-favorite" do %>
     <i class="far fa-heart"></i>
     <%= chat.favorites.count %>
   <% end %>
