@@ -31,12 +31,12 @@
           <%#<%= f.submit "ミーティングルームを検索" %>
         <% end %>
       <% end %>
-          <%= link_to notifications_path do %>
+          <%#= link_to notifications_path do %>
             <span class="fa-stack">
               <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
               <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
             </span>
-          <% end %>
+          <%# end %>
 
           <% if user_signed_in? %>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sign-out text-center" %>
@@ -45,5 +45,15 @@
     
   </header>
     <%= yield %>
+
+    <div id="search-result"></div>
+
+    <div class="notifications invisible">
+      <h2 class="notification-title">通知一覧</h2>
+      <hr class="hr-1">
+      <p class="notification-text">Usernameがあなたのコメントに いいね しました。</p>
+      <p class="notification-chat">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+      <hr class="hr-2">
+    </div>
   </body>
 </html>
