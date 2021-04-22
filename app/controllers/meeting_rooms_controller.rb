@@ -51,7 +51,8 @@ class MeetingRoomsController < ApplicationController
       end
     else
       # 存在しない
-      @search_result = @search_room
+      # byebug
+      redirect_to no_room_path
     end
   end
 
@@ -62,6 +63,10 @@ class MeetingRoomsController < ApplicationController
     )
     @new_room_user.save
     redirect_to meeting_room_path(params[:meeting_room_id])
+  end
+
+  def no_room
+
   end
 
   private

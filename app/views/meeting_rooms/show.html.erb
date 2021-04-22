@@ -21,7 +21,7 @@
             <% end %>
           <% end %>
           <div id="chat-<%= chat.id %>" class="chat-favorite">
-            <%= render 'chats/favorite', chat: chat %>
+            <%= render "chats/favorite", chat: chat %>
           </div>
         </div>
     <% end %>
@@ -32,4 +32,12 @@
 
     <%= f.submit "投稿", class: "chat-form-btn"%>
   <% end %>
+
+  <div class="disclosure-user-modal">
+    <p class="disclosure-user-chat text-center">XXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+    <p class="disclosure-user-note text-center">このメッセージの送り主に</p>
+    <p class="disclosure-user-note text-center">名前の開示をお願いしますか？</p>
+    <a href="#" class="disclosure-user-btn quit">やめる</a>
+    <a href="#" class="disclosure-user-btn please">お願いする</a>
+  </div>
 </div>
