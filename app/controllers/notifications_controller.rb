@@ -6,5 +6,11 @@ class NotificationsController < ApplicationController
       notification.update(is_checked: true)
     end
   end
+
+  def show_modal
+    @chat = Chat.find(params[:chat_id])
+    session[:chat_content] = @chat.content
+    session[:user_name] = @chat.user.name
+  end
   
 end

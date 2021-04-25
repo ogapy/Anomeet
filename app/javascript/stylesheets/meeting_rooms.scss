@@ -81,10 +81,9 @@
   background: rgba(#333, 0.5);
   width: 100%;
   min-height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  display: none;
 }
 
 .new-room-form {
@@ -98,6 +97,7 @@
   background: white;
   height: 40vh;
   border-radius: 50px;
+  pointer-events: none;
 }
 
 .new-room-name {

@@ -31,13 +31,12 @@
           <%#<%= f.submit "ミーティングルームを検索" %>
         <% end %>
       <% end %>
-          <%#= link_to notifications_path do %>
-            <span class="fa-stack">
-              <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
-              <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
-            </span>
-          <%# end %>
-
+      <% if controller.controller_name != "homes" %>
+        <span class="fa-stack">
+          <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1em;"></i>
+          <%# <i class="fas fa-circle n-circle fa-stack-1x"></i> %>
+        </span>
+      <% end %>
           <% if user_signed_in? %>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sign-out text-center" %>
           <% end %>
@@ -55,5 +54,6 @@
       <p class="notification-chat">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
       <hr class="hr-2">
     </div>
+    
   </body>
 </html>

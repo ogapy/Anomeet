@@ -12,12 +12,9 @@
           <% if chat.is_disclosed %>
             <p class="chat-user"><%= chat.user.name %></p>
           <% else %>
-            <%= form_with url: apply_path, local: true do |f| %>
-              <%# 通知の対象になるchat_id %>
+            <%= form_with url: show_modal_path, remote: true do |f| %>
               <%= f.hidden_field :chat_id, value: chat.id %>
-              <%# 同じ部屋に戻るためのroom_id %>
-              <%= f.hidden_field :room_id, value: @meeting_room.id %>
-              <%= f.submit "名前を見る" %>
+              <%= f.submit "名前を見る", class:"look-name-btn" %>
             <% end %>
           <% end %>
           <div id="chat-<%= chat.id %>" class="chat-favorite">
@@ -30,14 +27,15 @@
   <%= form_with model: @new_chat, local: true, class: "chat-form-area" do |f| %>
     <%= f.text_field :content, class: "chat-form" %>
 
-    <%= f.submit "投稿", class: "chat-form-btn"%>
+    <%= f.submit "投稿", class: "chat-form-btn" %>
   <% end %>
-
-  <div class="disclosure-user-modal">
-    <p class="disclosure-user-chat text-center">XXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-    <p class="disclosure-user-note text-center">このメッセージの送り主に</p>
-    <p class="disclosure-user-note text-center">名前の開示をお願いしますか？</p>
-    <a href="#" class="disclosure-user-btn quit">やめる</a>
-    <a href="#" class="disclosure-user-btn please">お願いする</a>
+  <div class="background-2 invisible">
+    <div class="disclosure-user-modal">
+      <p class="disclosure-user-chat text-center">XXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+      <p class="disclosure-user-note text-center">このメッセージの送り主に</p>
+      <p class="disclosure-user-note text-center">名前の開示をお願いしますか？</p>
+      <span class="disclosure-user-btn quit">やめる</span>
+      <a href="#" class="disclosure-user-btn please">お願いする</a>
+    </div>
   </div>
 </div>

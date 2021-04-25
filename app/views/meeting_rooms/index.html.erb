@@ -19,7 +19,7 @@
   <div class="circle">
     <i class="fas fa-plus"></i>
   </div>
-  <div class="background-2">
+  <div class="background-2 invisible">
     <%= form_with model: @new_meeting_room, local: true, class: "new-room-form" do |f| %>
       <p class="new-room-name">新規ルームを作成</p>
       <%= f.text_field :name, class: "new-room-textfield" %>
