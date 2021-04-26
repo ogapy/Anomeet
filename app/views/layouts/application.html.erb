@@ -46,14 +46,24 @@
     <%= yield %>
 
     <div id="search-result"></div>
-
-    <div class="notifications invisible">
-      <h2 class="notification-title">通知一覧</h2>
-      <hr class="hr-1">
-      <p class="notification-text">Usernameがあなたのコメントに いいね しました。</p>
-      <p class="notification-chat">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-      <hr class="hr-2">
-    </div>
-    
+    <% if user_signed_in? %>
+      <div class="notifications invisible">
+        <h2 class="notification-title">通知一覧</h2>
+        <hr class="hr-1">
+        <% @notifications.each do |notification| %>
+          <% if notification.favorite? %>
+            <p class="notification-text"><%= notification.sender.name %>があなたのコメントに いいね しました。</p>
+            <p class="notification-chat"><%= notification.chat.content %></p>
+          <% elsif notification.disclose? %>
+            <p class="notification-text"><%= notification.sender.name %>があなたに名前の開示をお願いしています。</p>
+            <p class="notification-chat"><%= notification.chat.content %></p>
+            <span class="apply">
+              <%= render 'chats/apply_btn', chat: notification.chat %>
+            </span>
+          <% end %>
+          <hr class="hr-2">
+        <% end %>
+      </div>
+    <% end %>
   </body>
 </html>
