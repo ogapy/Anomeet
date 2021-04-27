@@ -10,16 +10,15 @@ class ChatsController < ApplicationController
     end
   end
 
-  def apply_for_name_disclosure
-    @chat = Chat.find(params[:chat_id])
-    @chat.create_notification_show_name(current_user)
-    redirect_to meeting_room_path(params[:room_id])
-  end
+  # def apply_for_name_disclosure
+  #   @chat = Chat.find(params[:chat_id])
+  #   @chat.create_notification_show_name(current_user)
+  #   redirect_to meeting_room_path(params[:room_id])
+  # end
 
   def update
     @chat = Chat.find(params[:id])
     @chat.update(is_disclosed: !@chat.is_disclosed)
-    redirect_to notifications_path
   end
 
   private

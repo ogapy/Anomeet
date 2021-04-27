@@ -1,24 +1,19 @@
-<h1>MeetingRooms#index</h1>
-
-<%= form_with url: search_path, remote: true do |f| %>
-  <%= f.text_field :meeting_id, id: "search-room-form" %>
-  <%= f.submit "ミーティングルームを検索" %>
-<% end %>
-
-<% @attending_rooms.each do |attending_room| %>
-  <div>
-    <%= attending_room.name %>
-    <%= attending_room.leader_id %>
-    <%= attending_room.meeting_id %>
-    <%= link_to "参加する", meeting_room_path(attending_room) %>
+<div class="background">
+  
+  <div class="meeting-rooms">
+    <%= render 'room_list', attending_rooms: @attending_rooms %>
   </div>
-<% end %>
 
-<%= form_with model: @new_meeting_room, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.submit "ルーム作成"%>
-<% end %>
-
-<div id="search-result"></div>
+  <div class="circle">
+    <i class="fas fa-plus"></i>
+  </div>
+  <div class="background-2 invisible">
+    <%= form_with model: @new_meeting_room, local: true, class: "new-room-form" do |f| %>
+      <p class="new-room-name">新規ルームを作成</p>
+      <%= f.text_field :name, class: "new-room-textfield" %>
+      <br>
+      <%= f.submit "ルーム作成", class: "new-room-submit" %>
+    <% end %>
+  </div>
+</div>
+<%= javascript_pack_tag 'add_room_modal' %>

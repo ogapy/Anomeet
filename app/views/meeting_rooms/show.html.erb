@@ -1,36 +1,46 @@
-<%= link_to "<戻る", meeting_rooms_path %>
-<h1><%= @meeting_room.name %></h1>
-<%= @meeting_room.meeting_id %>
-
-<% @meeting_room.chats.each do |chat| %>
-  <% if chat.user == current_user %>
-    <div style="display: flex; justify-content: flex-end;">
-      <%= chat.content %><br>
-      <%= chat.created_at %>
-    </div>
-  <% else %>
-    <div>
-      <%= chat.content %>
-      <div id="chat-<%= chat.id %>">
-        <%= render 'chats/favorite', chat: chat %>
-      </div>
-      <% if chat.is_disclosed %>
-        <%= chat.user.name %>
+<div class="background">
+  <div class="space"></div>
+  <div class="chats-area">
+    <% @meeting_room.chats.each do |chat| %>
+      <% if chat.user == current_user %>
+        <div style="display: flex; justify-content: flex-end;">
+          <p class="chat-content-self"><%= chat.content %><br></p>
+          <%#= chat.created_at %>
+        </div>
       <% else %>
-        <%= form_with url: apply_path, local: true do |f| %>
-          <%# 通知の対象になるchat_id %>
-          <%= f.hidden_field :chat_id, value: chat.id %>
-          <%# 同じ部屋に戻るためのroom_id %>
-          <%= f.hidden_field :room_id, value: @meeting_room.id %>
-          <%= f.submit "名前を見る" %>
-        <% end %>
+          <p class="chat-content-friend"><%= chat.content %></p>
+          <div class="chat-favo-name">
+            <% if chat.is_disclosed %>
+              <p class="chat-user"><%= chat.user.name %></p>
+            <% else %>
+              <%= form_with url: show_modal_path, remote: true do |f| %>
+                <%= f.hidden_field :chat_id, value: chat.id %>
+                <%= f.submit "名前を見る", class:"look-name-btn" %>
+              <% end %>
+            <% end %>
+            <div id="chat-<%= chat.id %>" class="chat-favorite">
+              <%= render "chats/favorite", chat: chat %>
+            </div>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= form_with model: @new_chat, local: true, class: "chat-form-area" do |f| %>
+    <%= f.text_field :content, class: "chat-form" %>
+
+    <%= f.submit "投稿", class: "chat-form-btn" %>
+  <% end %>
+  <div class="background-2 invisible">
+    <div class="disclosure-user-modal">
+      <p class="disclosure-user-chat text-center">XXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+      <p class="disclosure-user-note text-center">このメッセージの送り主に</p>
+      <p class="disclosure-user-note text-center">名前の開示をお願いしますか？</p>
+      <span class="disclosure-user-btn quit">やめる</span>
+      <%= form_with url: apply_path, remote: true do |f|%>
+        <%= f.submit "お願いする", class: "disclosure-user-btn please" %>
       <% end %>
     </div>
-  <% end %>
-<% end %>
+  </div>
+</div>
 
-<%= form_with model: @new_chat, local: true do |f| %>
-  <%= f.text_field :content %>
-
-  <%= f.submit "投稿"%>
-<% end %>

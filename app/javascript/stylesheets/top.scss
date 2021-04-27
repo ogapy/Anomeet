@@ -1,0 +1,53 @@
+@import "color";
+
+.main-title {
+  width: 48%;
+  height: 60%;
+  padding-top: 150px;
+}
+
+.main-title-top {
+  background-color: $sub-color;
+  border-radius: 0 50px 0 0;
+  height: 25vh;
+}
+
+.top-title {
+  font-size: 90px;
+  color: white;
+  padding-top: 20px;
+}
+
+.top-sub-title {
+  font-size: 25px;
+  color: $main-color;
+}
+
+.main-title-bottom {
+  background-color: $sub-color2;
+  border-radius: 0 0 50px 0;
+  height: 15vh;
+  position: relative;
+}
+
+.sign-up-btn {
+  color: white;
+  padding: 10px 30px;
+  border: 5px solid white;
+  left: 25%;
+}
+
+.sign-in-btn {
+  color: white;
+  padding: 10px 30px;
+  border: 5px solid $main-color;
+  left: 75%;
+}
+
+.auth-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 180px;
+  border-radius: 27px;
+}
