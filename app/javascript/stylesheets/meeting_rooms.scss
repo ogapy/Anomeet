@@ -1,5 +1,5 @@
 .meeting-rooms {
-  padding-top: 80px;
+  padding-top: 150px;
   margin: 0 auto;
   width: 75%;
   display: flex;
@@ -81,10 +81,9 @@
   background: rgba(#333, 0.5);
   width: 100%;
   min-height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  display: none;
 }
 
 .new-room-form {
@@ -98,6 +97,7 @@
   background: white;
   height: 40vh;
   border-radius: 50px;
+  pointer-events: none;
 }
 
 .new-room-name {
@@ -144,7 +144,6 @@
   left: 0;
   right: 0;
   margin: auto;
-  display: none;
 }
 
 .notification-title {
@@ -171,6 +170,7 @@
 
 .notification-chat {
   margin: 10px 0 20px 80px;
+  display: inline-block;
   color: rgba($color: $sub-color2, $alpha: 0.7);
 }
 
@@ -181,6 +181,29 @@
 
 .not-found-room {
   color: white;
-  padding-top: 40px;
+  padding-top: 120px;
   text-align: center;
+}
+
+.apply {
+  margin: 0 50px 15px 0;
+  float: right;
+}
+
+.already-apply {
+  font-size: 20px;
+  color: #aaa;
+  background-color: #eee;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 40px;
+}
+
+.apply-btn {
+  font-size: 20px;
+  color: white;
+  background-color: $sub-color;
+  font-weight: bold;
+  padding: 10px 30px;
+  border-radius: 40px;
 }

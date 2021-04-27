@@ -1,0 +1,5 @@
+<% if chat.is_disclosed %>
+  <span class="already-apply">承認済み</span>
+<% else %>
+  <%= link_to "承認する", chat_path(chat), class: "apply-btn", method: :patch, remote: true %>
+<% end %>
