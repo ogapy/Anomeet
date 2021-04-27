@@ -37,21 +37,14 @@ class MeetingRoomsController < ApplicationController
   end
 
   def search_room
-    @search_room = MeetingRoom.find_by(meeting_id: params[:meeting_id])
-    @attending_searched_room = current_user.attending_rooms.where(meeting_id: params[:meeting_id])
+    @search_room = MeetingRoom.where(meeting_id: params[:meeting_id])
     if @search_room.present?
-      if @attending_searched_room.present?
-        # 存在かつ参加済
-        @new_meeting_room = MeetingRoom.new
-        @attending_rooms = @attending_searched_room
-        render :index
-      else
-        # 存在かつ未参加
-        @search_result = @search_room
-      end
+      # 存在する
+      @new_meeting_room = MeetingRoom.new
+      @attending_rooms = @search_room
+      render :index
     else
       # 存在しない
-      # byebug
       redirect_to no_room_path
     end
   end

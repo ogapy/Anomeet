@@ -1,28 +1,30 @@
 <div class="background">
   <div class="space"></div>
-  <% @meeting_room.chats.each do |chat| %>
-    <% if chat.user == current_user %>
-      <div style="display: flex; justify-content: flex-end;">
-        <p class="chat-content-self"><%= chat.content %><br></p>
-        <%#= chat.created_at %>
-      </div>
-    <% else %>
-        <p class="chat-content-friend"><%= chat.content %></p>
-        <div class="chat-favo-name">
-          <% if chat.is_disclosed %>
-            <p class="chat-user"><%= chat.user.name %></p>
-          <% else %>
-            <%= form_with url: show_modal_path, remote: true do |f| %>
-              <%= f.hidden_field :chat_id, value: chat.id %>
-              <%= f.submit "名前を見る", class:"look-name-btn" %>
-            <% end %>
-          <% end %>
-          <div id="chat-<%= chat.id %>" class="chat-favorite">
-            <%= render "chats/favorite", chat: chat %>
-          </div>
+  <div class="chats-area">
+    <% @meeting_room.chats.each do |chat| %>
+      <% if chat.user == current_user %>
+        <div style="display: flex; justify-content: flex-end;">
+          <p class="chat-content-self"><%= chat.content %><br></p>
+          <%#= chat.created_at %>
         </div>
+      <% else %>
+          <p class="chat-content-friend"><%= chat.content %></p>
+          <div class="chat-favo-name">
+            <% if chat.is_disclosed %>
+              <p class="chat-user"><%= chat.user.name %></p>
+            <% else %>
+              <%= form_with url: show_modal_path, remote: true do |f| %>
+                <%= f.hidden_field :chat_id, value: chat.id %>
+                <%= f.submit "名前を見る", class:"look-name-btn" %>
+              <% end %>
+            <% end %>
+            <div id="chat-<%= chat.id %>" class="chat-favorite">
+              <%= render "chats/favorite", chat: chat %>
+            </div>
+          </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
   <%= form_with model: @new_chat, local: true, class: "chat-form-area" do |f| %>
     <%= f.text_field :content, class: "chat-form" %>

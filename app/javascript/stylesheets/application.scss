@@ -38,7 +38,8 @@ a {
 .background {
   background-color: $main-color;
   width: 100%;
-  min-height: 91vh;
+  // min-height: 91vh;
+  min-height: 100vh;
 }
 
 // header関係
@@ -47,6 +48,8 @@ header {
   width: 100%;
   height: 9vh;
   background-color: $sub-color;
+  position: fixed;
+  z-index: 5;
 }
 
 .nav {

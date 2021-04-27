@@ -1,19 +1,7 @@
 <div class="background">
   
   <div class="meeting-rooms">
-    <% @attending_rooms.each do |attending_room| %>
-      <div class="meeting-room-block">
-        <p class="meeting-room-name"><%= attending_room.name %></p>
-        <p class="participant">参加者</p>
-        <p class="meeting-room-member">ogapy</p>
-        <p class="meeting-room-member">ogapy</p>
-        <p class="meeting-room-member">ogapy</p>
-        <p class="meeting-room-member"><i class="fas fa-ellipsis-v"></i></p>
-        <%#= attending_room.leader_id %>
-        <%#= attending_room.meeting_id %>
-        <%= link_to "参加する", meeting_room_path(attending_room), class: "meeting-room-btn text-center" %>
-      </div>
-    <% end %>
+    <%= render 'room_list', attending_rooms: @attending_rooms %>
   </div>
 
   <div class="circle">
