@@ -46,12 +46,28 @@
   font-size: 20px;
   color: $sub-color2;
   padding: 5px 40px;
-  margin: 40px auto 10px auto;
+  // margin: 40px auto 10px auto;
   display: block;
   border-radius: 40px;
   border: 5px solid $sub-color2;
   width: 70%;
   line-height: 40px;
+}
+
+.member1 {
+  margin: 115px auto 10px auto;
+}
+
+.member2 {
+  margin: 90px auto 10px auto;
+}
+
+.member3 {
+  margin: 70px auto 10px auto;
+}
+
+.member4 {
+  margin: 40px auto 10px auto;
 }
 
 .circle {
