@@ -8,6 +8,7 @@ class MeetingRoomsController < ApplicationController
 
   def show
     @meeting_room = MeetingRoom.find(params[:id])
+    @chats = @meeting_room.chats.order("id")
     @members = @meeting_room.members
     @new_chat = Chat.new
     session[:meeting_room_id] = @meeting_room.id
