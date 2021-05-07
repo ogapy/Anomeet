@@ -2,9 +2,9 @@ import consumer from "./consumer";
 window.onload = function() {
   const appRoom = consumer.subscriptions.create("MeetingRoomsChannel", {
     received(data) {
-      console.log(data);
-      const chatMessages = document.querySelector(".chats-area");
+      const chatMessages = document.querySelector(".chats-area")
       chatMessages.insertAdjacentHTML("beforeend", data["chat_content"]);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     },
 
     speak: function(chat_content, meeting_room_id) {

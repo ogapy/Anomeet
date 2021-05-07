@@ -1,10 +1,10 @@
 <% if chat.user == current_user %>
-  <div style="display: flex; justify-content: flex-end;">
-    <p class="chat-content-self"><%= chat.content %><br></p>
-    <%#= chat.created_at %>
+  <div class="chat__<%= chat.id %> flex-right" data-chat-user-id="<%= chat.user.id %>">
+    <p class="chat-content self"><%= chat.content %><br></p>
   </div>
-<% else %>
-    <p class="chat-content-friend"><%= chat.content %></p>
+<% else %>          
+  <div class="chat__<%= chat.id %>">
+    <p class="chat-content friend"><%= chat.content %></p>
     <div class="chat-favo-name">
       <% if chat.is_disclosed %>
         <p class="chat-user"><%= chat.user.name %></p>
@@ -18,4 +18,31 @@
         <%= render "chats/favorite", chat: chat %>
       </div>
     </div>
+  </div>
 <% end %>
+<!--<script>
+  var chat_user_id = <%= chat.user.id %>;
+  var current_user_id = <%= current_user.id %>
+  var chat_content = document.querySelector(".chat__" + <%= chat.id %>)
+  if(chat_user_id == current_user_id){
+    chat_content.classList.add("flex-right");
+    chat_content.firstElementChild.classList.add("self");
+  } else {
+    chat_content.firstElementChild.classList.add("friend");
+  }
+</script>-->
+<!--
+自分の場合:
+div {
+  display: flex;
+  justify-content: flex-end;
+}
+p class="chat-content-self"
+
+他人の場合:
+div {
+  display: flex;
+  justify-content: flex-start;
+}
+p class="chat-content-friend"
+-->

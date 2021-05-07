@@ -12,21 +12,25 @@
   overflow: auto;
 }
 
-.chat-content-self {
-  font-size: 23px;
-  background-color: white;
-  max-width: 450px;
-  padding: 10px 20px;
-  margin-right: 30px;
-  margin-bottom: 10px;
-  border-radius: 20px 20px 0 20px;
+.flex-right {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.chat-content-friend {
+.chat-content {
   font-size: 23px;
   background-color: white;
   max-width: 450px;
   padding: 10px 20px;
+}
+
+.self {
+  margin-right: 30px;
+  border-radius: 20px 20px 0 20px;
+  margin-bottom: 10px;
+}
+
+.friend {
   margin-left: 30px;
   border-radius: 20px 20px 20px 0;
   display: inline-block;
@@ -34,13 +38,13 @@
 
 .chat-favo-name {
   margin-left: 30px;
-  margin-bottom: 10px;
 }
 
 .chat-favorite {
   display: inline-block;
   margin-left: 10px;
   margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .already-favorited {
