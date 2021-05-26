@@ -4,4 +4,6 @@ class Notification < ApplicationRecord
   belongs_to :chat
 
   enum action: [:disclose, :favorite]
+
+  after_create_commit { NotificationBroadcastJob.perform_later self }
 end

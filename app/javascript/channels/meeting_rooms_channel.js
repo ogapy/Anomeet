@@ -16,9 +16,11 @@ window.onload = function() {
   });
 
   let ref = location.pathname;
+  console.log(ref);
   let result = ref.match("/meeting_rooms/" | /[0 - 9]/);
   // URLチェック
   if (result) {
+    console.log(1);
     const chat_btn = document.querySelector(".chat-form-btn");
     const chat_form = document.querySelector(".chat-form");
     chat_btn.addEventListener("click", e => {

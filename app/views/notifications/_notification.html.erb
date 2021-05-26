@@ -1,0 +1,11 @@
+<% if notification.favorite? %>
+  <p class="notification-text"><%= notification.sender.name %>があなたのコメントに いいね しました。</p>
+  <p class="notification-chat"><%= notification.chat.content %></p>
+<% elsif notification.disclose? %>
+  <p class="notification-text"><%= notification.sender.name %>があなたに名前の開示をお願いしています。</p>
+  <p class="notification-chat"><%= notification.chat.content %></p>
+  <span class="apply">
+    <%= render 'chats/apply_btn', chat: notification.chat %>
+  </span>
+<% end %>
+<hr class="hr-2">

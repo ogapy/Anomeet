@@ -16,7 +16,7 @@
       <p class="disclosure-user-note text-center">このメッセージの送り主に</p>
       <p class="disclosure-user-note text-center">名前の開示をお願いしますか？</p>
       <span class="disclosure-user-btn quit">やめる</span>
-      <%= form_with url: apply_path, remote: true do |f|%>
+      <%= form_with url: apply_path, local: true, class: "disclosure-user-form", data: { receiver_id: "", chat_id: "" } do |f|%>
         <%= f.submit "お願いする", class: "disclosure-user-btn please" %>
       <% end %>
     </div>

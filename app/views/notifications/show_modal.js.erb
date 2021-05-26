@@ -2,3 +2,5 @@
 $(".disclosure-user-chat").text("<%= @chat.content %>");
 // モーダルの表示
 $(".background-2").removeClass("invisible"); 
+$(".disclosure-user-form").data("receiver_id", "<%= @chat.user.id %>")
+$(".disclosure-user-form").data("chat_id", "<%= @chat.id %>")
