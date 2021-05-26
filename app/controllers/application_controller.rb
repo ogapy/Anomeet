@@ -6,25 +6,32 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def after_sign_up_path_for(resource)
-    meeting_rooms_path
-  end
+    def after_sign_up_path_for(resource)
+      meeting_rooms_path
+    end
 
-  def after_sign_in_path_for(resource)
-    meeting_rooms_path
-  end
+    def after_sign_in_path_for(resource)
+      meeting_rooms_path
+    end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-  end
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    end
 
-  def get_notifications
-    if user_signed_in?
-      @notifications = current_user.passive_notifications.where.not(sender_id: current_user.id)
-      @notifications.where(is_checked: false).each do |notification|
-        notification.update(is_checked: true)
+    def get_notifications
+      if user_signed_in?
+        @notifications = current_user.passive_notifications.where.not(sender_id: current_user.id)
+        @notifications.where(is_checked: false).each do |notification|
+          notification.update(is_checked: true)
+        end
       end
     end
-  end
+
+    def self.render_with_signed_in_user(user, *args)
+      ActionController::Renderer::RACK_KEY_TRANSLATION['warden'] ||= 'warden'
+      proxy = Warden::Proxy.new({}, Warden::Manager.new({})).tap{|i| i.set_user(user, scope: :user) }
+      renderer = self.renderer.new('warden' => proxy)
+      renderer.render(*args)
+    end
   
 end
