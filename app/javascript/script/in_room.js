@@ -14,8 +14,7 @@ quit_btn.addEventListener("click", () => {
 });
 
 let target = document.querySelector(".chats-area");
-target.scrollTop = target.scrollHeight;
-
+target.scrollTop = target.scrollHeight + 100;
 // チャット主によって表示切り替え
 function event(mutationRecord) {
   var addedNode = mutationRecord[0].addedNodes["1"];
@@ -25,7 +24,9 @@ function event(mutationRecord) {
     addedNode.classList.remove("flex-right");
     addedNode.firstElementChild.classList.remove("self");
     addedNode.firstElementChild.classList.add("friend");
+    addedNode.children[1].classList.remove("invisible");
   }
+  target.scrollTop = target.scrollHeight;
 }
 let observer = new MutationObserver(event);
 observer.observe(target, { childList: true });

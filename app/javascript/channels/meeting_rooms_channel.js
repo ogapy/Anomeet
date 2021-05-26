@@ -2,7 +2,7 @@ import consumer from "./consumer";
 window.onload = function() {
   const appRoom = consumer.subscriptions.create("MeetingRoomsChannel", {
     received(data) {
-      const chatMessages = document.querySelector(".chats-area")
+      const chatMessages = document.querySelector(".chats-area");
       chatMessages.insertAdjacentHTML("beforeend", data["chat_content"]);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     },
@@ -14,8 +14,11 @@ window.onload = function() {
       });
     }
   });
+
+  let ref = location.pathname;
+  let result = ref.match("/meeting_rooms/" | /[0 - 9]/);
   // URLチェック
-  if (/meeting_rooms/.test(location.pathname)) {
+  if (result) {
     const chat_btn = document.querySelector(".chat-form-btn");
     const chat_form = document.querySelector(".chat-form");
     chat_btn.addEventListener("click", e => {

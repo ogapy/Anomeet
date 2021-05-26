@@ -1,6 +1,19 @@
 <% if chat.user == current_user %>
   <div class="chat__<%= chat.id %> flex-right" data-chat-user-id="<%= chat.user.id %>">
     <p class="chat-content self"><%= chat.content %><br></p>
+    <div class="chat-favo-name invisible">
+      <% if chat.is_disclosed %>
+        <p class="chat-user"><%= chat.user.name %></p>
+      <% else %>
+        <%= form_with url: show_modal_path, remote: true do |f| %>
+          <%= f.hidden_field :chat_id, value: chat.id %>
+          <%= f.submit "名前を見る", class:"look-name-btn" %>
+        <% end %>
+      <% end %>
+      <div id="chat-<%= chat.id %>" class="chat-favorite">
+        <%= render "chats/favorite", chat: chat %>
+      </div>
+    </div>
   </div>
 <% else %>          
   <div class="chat__<%= chat.id %>">
@@ -20,29 +33,3 @@
     </div>
   </div>
 <% end %>
-<!--<script>
-  var chat_user_id = <%= chat.user.id %>;
-  var current_user_id = <%= current_user.id %>
-  var chat_content = document.querySelector(".chat__" + <%= chat.id %>)
-  if(chat_user_id == current_user_id){
-    chat_content.classList.add("flex-right");
-    chat_content.firstElementChild.classList.add("self");
-  } else {
-    chat_content.firstElementChild.classList.add("friend");
-  }
-</script>-->
-<!--
-自分の場合:
-div {
-  display: flex;
-  justify-content: flex-end;
-}
-p class="chat-content-self"
-
-他人の場合:
-div {
-  display: flex;
-  justify-content: flex-start;
-}
-p class="chat-content-friend"
--->
