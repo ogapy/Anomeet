@@ -8,6 +8,12 @@ class MeetingRoomsController < ApplicationController
 
   def show
     @meeting_room = MeetingRoom.find(params[:id])
+    unless current_user.attend?(@meeting_room)
+      RoomUser.create!(
+        user_id: current_user.id,
+        meeting_room_id: @meeting_room.id
+      )
+    end
     @chats = @meeting_room.chats.order("id")
     @members = @meeting_room.members
     @new_chat = Chat.new
