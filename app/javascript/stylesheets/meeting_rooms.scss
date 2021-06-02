@@ -100,6 +100,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 .new-room-form {
@@ -159,6 +160,7 @@
   left: 0;
   right: 0;
   margin: auto;
+  z-index: 3;
 }
 
 .notification-title {

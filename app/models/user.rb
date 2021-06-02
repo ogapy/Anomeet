@@ -23,5 +23,9 @@ class User < ApplicationRecord
   def already_favorited?(chat)
     favorites.where(chat: chat).exists?
   end
+
+  def attend?(meeting_room)
+    self.attending_rooms.where(id: meeting_room.id).exists?
+  end
   
 end
