@@ -163,11 +163,21 @@
   z-index: 3;
 }
 
+.notification-area {
+  margin-top: 20px;
+  height: 80%;
+  overflow: scroll;
+}
+
 .notification-title {
   color: $sub-color2;
   font-size: 30px;
   padding-top: 20px;
   padding-left: 30px;
+}
+
+.notification-title:first {
+  margin-top: 0;
 }
 
 .hr-1 {
