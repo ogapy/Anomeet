@@ -22,9 +22,13 @@
       <% if chat.is_disclosed %>
         <p class="chat-user"><%= chat.user.name %></p>
       <% else %>
-        <%= form_with url: show_modal_path, remote: true do |f| %>
-          <%= f.hidden_field :chat_id, value: chat.id %>
-          <%= f.submit "名前を見る", class:"look-name-btn" %>
+        <%#= form_with url: show_modal_path, remote: true do |f| %>
+          <%#= f.hidden_field :chat_id, value: chat.id %>
+          <%#= f.submit "", class:"look-name-btn" %>
+        <%# end %>
+        <%= link_to show_modal_path(chat_id: chat.id), remote: true, method: :post, class: "fa-stack fa-1x" do %>
+          <i class="fas fa-user fa-stack-1x"></i>
+          <i class="fas fa-question fa-stack-1x"></i>
         <% end %>
       <% end %>
       <div id="chat-<%= chat.id %>" class="chat-favorite">

@@ -6,7 +6,6 @@
 
   <%= form_with model: @new_chat, local: true, class: "chat-form-area", data: { meeting_room_id: @meeting_room.id } do |f| %>
     <%= f.text_field :content, class: "chat-form" %>
-
     <%= f.submit "投稿", class: "chat-form-btn" %>
   <% end %>
   
