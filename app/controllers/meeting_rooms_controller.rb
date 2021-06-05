@@ -8,6 +8,13 @@ class MeetingRoomsController < ApplicationController
 
   def show
     @meeting_room = MeetingRoom.find(params[:id])
+    unless current_user.attend?(@meeting_room)
+      RoomUser.create!(
+        user_id: current_user.id,
+        meeting_room_id: @meeting_room.id
+      )
+    end
+    @chats = @meeting_room.chats.order("id")
     @members = @meeting_room.members
     @new_chat = Chat.new
     session[:meeting_room_id] = @meeting_room.id
@@ -19,20 +26,21 @@ class MeetingRoomsController < ApplicationController
     @new_meeting_room.leader_id  = current_user.id
     # ランダムな大小含めた英数字10文字をミーティングidとする
     @new_meeting_room.meeting_id = SecureRandom.alphanumeric(10)
-
-    if @new_meeting_room.save
-      @new_room_user = RoomUser.new(
-                                  user_id: current_user.id,
-                                  meeting_room_id: @new_meeting_room.id
-                                )
-      if @new_room_user.save
-        flash[:success] = "Object successfully created"
-        redirect_to @new_meeting_room
+    if params[:name] != ""
+      if @new_meeting_room.save
+        @new_room_user = RoomUser.new(
+                                    user_id: current_user.id,
+                                    meeting_room_id: @new_meeting_room.id
+                                  )
+        if @new_room_user.save
+          flash[:success] = "Object successfully created"
+          redirect_to @new_meeting_room
+        end
+      else
+        @attending_rooms = current_user.attending_rooms
+        flash[:error] = "Something went wrong"
+        render 'index'
       end
-    else
-      @attending_rooms = current_user.attending_rooms
-      flash[:error] = "Something went wrong"
-      render 'index'
     end
   end
 
