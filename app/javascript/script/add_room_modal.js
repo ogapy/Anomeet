@@ -1,5 +1,3 @@
-// document.addEventListener("turbolinks:load", () => {
-console.log("hello");
 let add_meeting_room_btn = document.querySelector(".circle");
 let background = document.querySelector(".background-2");
 let add_meeting_room_form = document.querySelector(".new-room-form");
@@ -15,4 +13,3 @@ add_meeting_room_form.addEventListener("click", e => {
 background.addEventListener("click", () => {
   background.classList.add("invisible");
 });
-// });

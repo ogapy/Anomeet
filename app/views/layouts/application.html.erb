@@ -48,19 +48,21 @@
       <div class="notifications invisible">
         <h2 class="notification-title">通知一覧</h2>
         <hr class="hr-1">
-        <% @notifications.each do |notification| %>
-          <% if notification.favorite? %>
-            <p class="notification-text"><%= notification.sender.name %>があなたのコメントに いいね しました。</p>
-            <p class="notification-chat"><%= notification.chat.content %></p>
-          <% elsif notification.disclose? %>
-            <p class="notification-text"><%= notification.sender.name %>があなたに名前の開示をお願いしています。</p>
-            <p class="notification-chat"><%= notification.chat.content %></p>
-            <span class="apply">
-              <%= render 'chats/apply_btn', chat: notification.chat %>
-            </span>
+        <div class="notification-area">
+          <% @notifications.each do |notification| %>
+            <% if notification.favorite? %>
+              <p class="notification-text"><%= notification.sender.name %>があなたのコメントに いいね しました。</p>
+              <p class="notification-chat"><%= notification.chat.content %></p>
+            <% elsif notification.disclose? %>
+              <p class="notification-text"><%= notification.sender.name %>があなたに名前の開示をお願いしています。</p>
+              <p class="notification-chat"><%= notification.chat.content %></p>
+              <span class="apply">
+                <%= render 'chats/apply_btn', chat: notification.chat %>
+              </span>
+            <% end %>
+            <hr class="hr-2">
           <% end %>
-          <hr class="hr-2">
-        <% end %>
+        </div>
       </div>
     <% end %>
     <% if controller.controller_name != "homes" && controller.controller_name != "registrations" && controller.controller_name != "sessions" %>
